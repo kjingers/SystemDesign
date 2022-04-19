@@ -16,3 +16,4 @@
 
 ## Other Talking Points
 
+[Other](https://github.com/kjingers/SystemDesign/blob/main/Notes/Other.md)
