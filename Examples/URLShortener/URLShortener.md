@@ -110,7 +110,24 @@ Can compute unqiue has of long URL and then encoded (base36[a-z,0-9]) or base 64
 
 ## Generating Keys Offline
 
+![image](https://user-images.githubusercontent.com/13190696/164077911-1e0ee2be-55c9-4be8-9606-46c6e1bbc9e9.png)
 
+* Can pre generate keys and store in a database (key-DB)
+* Can keep used keys in DB. ONce gnerates keys, can immediately move them into used keys
+* If KGS dies before assigning all keys, some wil be lost, but that's okay since we have so many
+* To not assign same key to multiple servers, but lock on data structure holding the keys before giving to server.
+
+6 (characters per key) * 68.7B (unique keys) = 412 GB.
+
+* Can have replicas on KGS to avoid Single Ppoint of Failure
+
+# Other Notes
+* Can partition on hash of object since we don't care about range based lookups
+* Range-based partitioning could still lead to unbalanced DBs and make it hard to re-balance later. 
+* If user requests expired link, then delete. 
+* A seperate cleanup service can run periodically to remove expired links from storage and cache. SHould be lightweight and run when low traffic load.
+* Once deleted, can put key back in key-DB.
+* Private Links: Can store permission level (public/private) with each URL. For example, in Cassandra, the hash row will have columns that will store the UserIDs of those users that have permissions to see the URL.
 
 
 
