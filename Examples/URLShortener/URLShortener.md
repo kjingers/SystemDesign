@@ -64,13 +64,13 @@ We need two API endpoints:
 POST api.test.com/v1/url/shorten
 
 Parameters:
-long-url: longURL string to shorten
-api-dev-key: for throttling
-custom-alias: optional custom alias
-expire-date: Optional Expire date
+* long-url: longURL string to shorten
+* api-dev-key: for throttling
+* custom-alias: optional custom alias
+* expire-date: Optional Expire date
 
 Return (string):
-short-url (or error)
+* short-url (or error)
 
 **Get Long URL**
 GET api.test.com/v1/{alias}
