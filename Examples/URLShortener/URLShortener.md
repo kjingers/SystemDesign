@@ -86,15 +86,31 @@ Return: success/error code
 # Database Design: Two Tables
 
 User table and Short <-> Long URL mapping
+
+
 ![image](https://user-images.githubusercontent.com/13190696/164067104-45c8ba06-c577-44ba-a8c5-3bb1df794b7d.png)
 
 # High Level Design
 
-![Alt text](/SystemDesign/blob/main/Drawio/urlshortener1.drawio.png?raw=true "Optional Title")
+![Alt text](/Drawio/urlshortener1.drawio.png?raw=true "Very High Level")
 
 
+# Generating Short Unique key for given URL
 
-# High Level Design
+## Encoding Actual URL
+
+Can compute unqiue has of long URL and then encoded (base36[a-z,0-9]) or base 64([A-Z,a-z,0-9,+,/])
+* WIth 6 charaters and base64: 64^6 = 68.7 billio possible strings
+* Base64 - each character encodes 6 bits (2^6 = 64)
+* MD5 gives 128-bit hash, requiring more than 21 characters, but we only can have 6/8. 
+* Using the first 6/8 could result in duplication
+
+* TO try to get around this, we can append some unique string to input of hash (userid, increasing sequence number). Conflict still possible.
+* If duplicate, can append sequence count and retrying until get valid one
+
+## Generating Keys Offline
+
+
 
 
 
