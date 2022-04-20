@@ -39,7 +39,7 @@ Good design which has added features like: comments, likes, news feed generation
 * Space for 10 Years: 400GB * 365 * 10 = 4TB * 400 = ~1600 TB
 * NOTE: If we support videos, then should Assume video uploads per day. Can assume 50MB per video
 
-# Bandwidth
+## Bandwidth
 * 25 photos per second * 200KB = ~8MB / sec
 * Assuming Read:Write of 80:20, Read = ~40 MB / sec
 
