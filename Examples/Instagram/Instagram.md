@@ -45,8 +45,11 @@ Good design which has added features like: comments, likes, news feed generation
 
 # APIs
 Upload Photo - PhotoID uploadPhoto(UserID, Base 64 Encoded Photo)  : /photo/upload
+
 Follow a User - Result followUser(UserID, FollowerID) : /user/follow
+
 Unfollow a User -Result unFollowUser(UserID, FollowerID) : /user/unfollow
+
 User New Feed - Post[] newsFeed(UserID) : /user/feed
 
 # High Level Design
