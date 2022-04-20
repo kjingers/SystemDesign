@@ -97,18 +97,33 @@ User table and Short <-> Long URL mapping
 
 # Generating Short Unique key for given URL
 
-## Encoding Actual URL
+## Encoding Scheme:
 
-Can compute unqiue has of long URL and then encoded (base36[a-z,0-9]) or base 64([A-Z,a-z,0-9,+,/])
+Can compute unqiue hash of long URL and then encoded (base36[a-z,0-9]) or base 64([A-Z,a-z,0-9,+,/])
 * WIth 6 charaters and base64: 64^6 = 68.7 billio possible strings
 * Base64 - each character encodes 6 bits (2^6 = 64)
+
+## Option 1: Encoding Actual URL, or hash of url
+
+Can compute unqiue hash of long URL and then encoded (base36[a-z,0-9]) or base 64([A-Z,a-z,0-9,+,/])
 * MD5 gives 128-bit hash, requiring more than 21 characters, but we only can have 6/8. 
 * Using the first 6/8 could result in duplication
-
 * TO try to get around this, we can append some unique string to input of hash (userid, increasing sequence number). Conflict still possible.
 * If duplicate, can append sequence count and retrying until get valid one
+* Querying DB can be expensive when have a lot of collisions. Using Bloom filters can improve performance
 
-## Generating Keys Offline
+![image](https://user-images.githubusercontent.com/13190696/164282721-1910dbdf-06ba-4baf-be73-98288461e769.png)
+
+## Option 2: Base 62 encode uuid
+* Requires a unide ID generator
+* Collision would be impossible
+* Short URL not necessarily fixed.
+* Next url is predictable, which is security concern
+
+![image](https://user-images.githubusercontent.com/13190696/164284223-51114d0e-8665-4b6a-8054-47c3a86fd4f1.png)
+
+
+## Option 3: Generating Keys Offline
 
 ![image](https://user-images.githubusercontent.com/13190696/164077911-1e0ee2be-55c9-4be8-9606-46c6e1bbc9e9.png)
 
